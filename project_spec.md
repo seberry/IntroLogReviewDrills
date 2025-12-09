@@ -41,7 +41,31 @@ export interface ProofLine {
 
 **[INSTRUCTION TO CODING AI]**: The user has provided source code from an existing project (LogicPenguin/OpenLogic). **Do not reinvent** these logical components. Port/Wrap them as described below.
 
-Asset A: TFL Sentence Generator (Port from Python)Source: User provided Python logic (see Prompts).Action: Create src/utils/generator.ts.Logic: Port the recursive generation logic from Python to TypeScript.Crucial: Change the operator | to v (for disjunction).Operators: v (or), & (and), -> (conditional), <-> (biconditional), ~ (negation).Asset B: TFL Syntax & Formatting (Port from JS)Source: syntax.js (from LogicPenguin repo).Action: Create src/utils/syntax.ts.Functions to Port:prettyStr(s): Converts ASCII inputs (->, v) into Unicode symbols ($\to$, $\lor$).Regex: Replace -> with $\to$, v with $\lor$, <-> with $\leftrightarrow$, & with $\land$, ~ with $\neg$.fixWffInputStr(s): Sanitizes user input.Asset C: Fitch Proof Styling (Port from CSS)Source: proofs.css (LogicPenguin).Action: Create a component src/components/FitchDisplay.tsx.Logic:Render ProofLine[] as a styled table.Subproofs: Use Tailwind to replicate border-left: 2px solid black for indented lines.Hypotheses: Use Tailwind to replicate border-bottom: 2px solid black.Asset D: Model VisualizationSource: User provided ModelGrid.tsx.Action: Create src/components/ModelVisualizer.tsx.
+**[INSTRUCTION TO CODING AI]**: The user has provided source code from an existing project. **Do not reinvent** these logical components. Port/Wrap them as described below.
+
+### Asset A: TFL Sentence Generator (Port from Python)
+* **Source:** User provided Python logic (see Prompts).
+* **Action:** Create `src/utils/generator.ts`.
+* **Logic:** Port the recursive generation logic from Python to TypeScript.
+    * **Crucial:** Change the operator `|` to `v` (for disjunction).
+    * **Operators:** `v` (or), `&` (and), `->` (conditional), `<->` (biconditional), `~` (negation).
+
+### Asset B: TFL Syntax & Formatting (Port from JS)
+* **Source:** `syntax.js` (from [LogicPenguin](https://github.com/OpenLogicProject/fitch-checker/blob/master/syntax.js) repo).
+* **Action:** Create `src/utils/syntax.ts`.
+* **Functions to Port:**
+    1.  `prettyStr(s)`: Converts ASCII inputs (`->`, `v`) into Unicode symbols ($\to$, $\lor$).
+    2.  `fixWffInputStr(s)`: Sanitizes user input.
+    * **Note:** You must also include the helper functions `symReplace` and `negReplace` that these functions depend on.
+
+### Asset C: Fitch Proof Styling (Port from CSS)
+* **Source:** `proofs.css` (LogicPenguin).
+* **Action:** Create a component `src/components/FitchDisplay.tsx`.
+* **Logic:** Render `ProofLine[]` as a styled table using Tailwind to replicate the original borders.
+
+### Asset D: Model Visualization
+* **Source:** User provided `ModelGrid.tsx`.
+* **Action:** Create `src/components/ModelVisualizer.tsx`.
 
 ## 3. The 4 Activities (Implementation Specs)
 
