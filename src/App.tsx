@@ -11,7 +11,7 @@ const activities: {
   id: ActivityId;
   title: string;
   description: string;
-  Component: React.ComponentType<{ onCorrect: (id: ActivityId) => void }>;
+  Component: React.ComponentType<{ onCorrect: (id: ActivityId) => void; onIncorrect?: (id: ActivityId) => void }>;
 }[] = [
   {
     id: 'tfl-subproof',
@@ -40,7 +40,7 @@ const activities: {
 ];
 
 export default function App() {
-  const { stats, statsList, recordCorrect } = useActivityStats();
+  const { stats, statsList, recordCorrect, recordIncorrect } = useActivityStats();
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -103,7 +103,7 @@ export default function App() {
                 </dl>
 
                 <div className="mt-6 rounded-lg border border-dashed border-slate-200 bg-slate-50/60 p-4">
-                  <Component onCorrect={recordCorrect} />
+                  <Component onCorrect={recordCorrect} onIncorrect={recordIncorrect} />
                 </div>
               </article>
             );

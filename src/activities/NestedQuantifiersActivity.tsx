@@ -2,6 +2,7 @@ import { ActivityId } from '../hooks/useActivityStats';
 
 interface ActivityProps {
   onCorrect: (id: ActivityId) => void;
+  onIncorrect?: (id: ActivityId) => void;
 }
 
 export function NestedQuantifiersActivity({ onCorrect }: ActivityProps) {
