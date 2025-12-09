@@ -41,29 +41,7 @@ export interface ProofLine {
 
 **[INSTRUCTION TO CODING AI]**: The user has provided source code from an existing project (LogicPenguin/OpenLogic). **Do not reinvent** these logical components. Port/Wrap them as described below.
 
-### Asset A: TFL Syntax & Formatting
-* **Source:** `syntax.js` (from provided `gitingest`).
-* **Action:** Create `src/utils/syntax.ts`.
-* **Functions to Port:**
-    1.  `prettyStr(s)`: Converts ASCII inputs (`->`, `A`) into Unicode symbols ($\to$, $\forall$). **Copy the regex replacements exactly from lines 730-737 of `syntax.js`.**
-    2.  `fixWffInputStr(s)`: Sanitizes user input. Copy logic from lines 739-740 of `syntax.js`.
-
-### Asset B: Fitch Proof Styling
-* **Source:** `proofs.css` and `proofs.js` (from `gitingest`).
-* **Action:** Create a component `src/components/FitchDisplay.tsx`.
-* **Logic:**
-    * Do **not** use `makeProof` from `proofs.js` (it interacts directly with the DOM/jQuery style).
-    * Instead, create a React component that takes `lines: ProofLine[]` and renders a table.
-    * **Styling (Ref `proofs.css`):**
-        * **Subproof Lines:** Replicate the `.midcell` class (lines 326, 351). Use Tailwind: `border-l-2 border-black`.
-        * **Hypotheses:** Replicate the `.sepcell` class (lines 331, 355). Use Tailwind: `border-b-2 border-black`.
-        * **Table Layout:** Replicate `table.prooftable` (line 323).
-
-### Asset C: Model Visualization
-* **Source:** User will provide `ModelGrid.tsx` content.
-* **Action:** Create `src/components/ModelVisualizer.tsx` and paste the user's code when prompted.
-
----
+Asset A: TFL Sentence Generator (Port from Python)Source: User provided Python logic (see Prompts).Action: Create src/utils/generator.ts.Logic: Port the recursive generation logic from Python to TypeScript.Crucial: Change the operator | to v (for disjunction).Operators: v (or), & (and), -> (conditional), <-> (biconditional), ~ (negation).Asset B: TFL Syntax & Formatting (Port from JS)Source: syntax.js (from LogicPenguin repo).Action: Create src/utils/syntax.ts.Functions to Port:prettyStr(s): Converts ASCII inputs (->, v) into Unicode symbols ($\to$, $\lor$).Regex: Replace -> with $\to$, v with $\lor$, <-> with $\leftrightarrow$, & with $\land$, ~ with $\neg$.fixWffInputStr(s): Sanitizes user input.Asset C: Fitch Proof Styling (Port from CSS)Source: proofs.css (LogicPenguin).Action: Create a component src/components/FitchDisplay.tsx.Logic:Render ProofLine[] as a styled table.Subproofs: Use Tailwind to replicate border-left: 2px solid black for indented lines.Hypotheses: Use Tailwind to replicate border-bottom: 2px solid black.Asset D: Model VisualizationSource: User provided ModelGrid.tsx.Action: Create src/components/ModelVisualizer.tsx.
 
 ## 3. The 4 Activities (Implementation Specs)
 
